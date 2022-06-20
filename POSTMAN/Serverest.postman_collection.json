@@ -1,0 +1,3164 @@
+{
+	"info": {
+		"_postman_id": "1c1a5244-ad2f-41fd-8ca4-322c52944388",
+		"name": "Casos de teste Serverest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18095851"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"item": [
+				{
+					"name": "Realizar login Válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"200, OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const atributos = ['message','authorization']\r",
+									"atributos.forEach((atributo) => {\r",
+									"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+									"pm.expect(pm.response.json()[atributo]).to.exist\r",
+									"})\r",
+									"});\r",
+									"\r",
+									"pm.test('Tipo da Resposta', () =>{\r",
+									"    pm.expect(response.message).is.a('String')\r",
+									"})\r",
+									"\r",
+									"pm.test('Mensagem correta', () => {\r",
+									"pm.expect(response.message).have.string(\"Login realizado com sucesso\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Libby76@yahoo.com\",\r\n  \"password\": \"904\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Realizar login com campo email Vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"400, BAD\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const atributos = ['message','authorization']\r",
+									"atributos.forEach((atributo) => {\r",
+									"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+									"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+									"})\r",
+									"});\r",
+									"\r",
+									"pm.test('Tipo da Resposta', () =>{\r",
+									"    pm.expect(response.message).is.a('undefined')\r",
+									"})\r",
+									"\r",
+									"pm.test('Mensagem correta', () => {\r",
+									"pm.expect(response.message).have.undefined;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"904\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Realizar login com campo senha vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"400, BAD\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const atributos = ['message','authorization']\r",
+									"atributos.forEach((atributo) => {\r",
+									"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+									"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+									"})\r",
+									"});\r",
+									"\r",
+									"pm.test('Tipo da Resposta', () =>{\r",
+									"    pm.expect(response.message).is.undefined\r",
+									"})\r",
+									"\r",
+									"pm.test('Mensagem correta', () => {\r",
+									"pm.expect(response.message).have.undefined;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Libby76@yahoo.com\",\r\n  \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Realizar login com campo email inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"400, BAD\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const atributos = ['message','authorization']\r",
+									"atributos.forEach((atributo) => {\r",
+									"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+									"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+									"})\r",
+									"});\r",
+									"\r",
+									"pm.test('Tipo da Resposta', () =>{\r",
+									"    pm.expect(response.message).is.undefined\r",
+									"})\r",
+									"\r",
+									"pm.test('Mensagem correta', () => {\r",
+									"pm.expect(response.message).have.undefined;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 401]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Libby76yahoo.com\",\r\n  \"password\": \"904\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/usuarios",
+			"item": [
+				{
+					"name": "Cadastrar usuarios",
+					"item": [
+						{
+							"name": "Cadastrar um usuario valido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.exist\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{$randomFullName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"administrador\": \"{{$randomBoolean}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um usuario com o campo nome vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"email\": \"raiden@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um usuario com email vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"rodrigo raiden\",\r\n  \"email\": \"\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um usuario com o email inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"rodrigo raiden\",\r\n  \"email\": \"raidenbvbnqa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um usuario com o campo administrador vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"rodrigo raiden nogueira\",\r\n  \"email\": \"raiden@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um usuario com o campo administrador inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"rodrigo raiden\",\r\n  \"email\": \"raiden@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"correto\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar usuarios por Id",
+					"item": [
+						{
+							"name": "Buscar um usuario com Id válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar um usuario com Id não existente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/usuarios/asdljkhaskdjas",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"asdljkhaskdjas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir um usuario",
+					"item": [
+						{
+							"name": "Excluir usuario com Id válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/usuarios/4y3B85P5rscyPgZG",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"4y3B85P5rscyPgZG"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir usuario com Id não existente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Nenhum registro excluído\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/usuarios/kadshdkjasfa",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"kadshdkjasfa"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Alterar dados de um usuario",
+					"item": [
+						{
+							"name": "Alterar dados de um usuario válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"const response = pm.response.json();\r",
+											"pm.test('Tipo da resposta', () =>{\r",
+											"    pm.expect(response.message).is.a('string')\r",
+											"})\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.exist\r",
+											"})\r",
+											"});\r",
+											"pm.test('Mensagem correta', () => {\r",
+											"pm.expect(response.message).have.string(\"Registro alterado com sucesso\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um usuario com o campo nome vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um usuario com o campo email vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"fulano da silva\",\r\n  \"email\": \"\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um usuario com o campo email inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"email\": \"beltranoqa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um usuario com o campo administrador vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um usuario com o campo administrador inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"sim\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/usuarios/0uxuPY0cbmQhpEz1",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"usuarios",
+										"0uxuPY0cbmQhpEz1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/produtos",
+			"item": [
+				{
+					"name": "Cadastrar Produtos",
+					"item": [
+						{
+							"name": "Cadastrar Produto válido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"const url = pm.environment.get('baseURL')\r",
+											"let name = pm.variables.replaceIn('{{$randomFullName}}')\r",
+											"let email = pm.variables.replaceIn('{{$randomEmail}}')\r",
+											"let senha = pm.variables.replaceIn('{{$randomPassword}}')\r",
+											"\r",
+											"const postRequest = {\r",
+											"\r",
+											"    url: `${url}/usuarios`,\r",
+											"    method: 'POST',\r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json'\r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            \"nome\": name,\r",
+											"            \"email\": email,\r",
+											"            \"password\": senha,\r",
+											"            \"administrador\": \"true\"\r",
+											"        })\r",
+											"    }\r",
+											"\r",
+											"}\r",
+											"pm.sendRequest(postRequest, (err, response) => {\r",
+											"    const res = response.json()\r",
+											"    console.log(err ? err : res);\r",
+											"    try {\r",
+											"        //operação\r",
+											"        pm.environment.set('emailValido', email)\r",
+											"        pm.environment.set('senhaValida', senha)\r",
+											"        pm.environment.set('_userId', res._id)\r",
+											"        \r",
+											"\r",
+											"        //Colaboração de Alexandre para fazer login antes de criar usuário\r",
+											"        const postRequestLogin = {\r",
+											"\r",
+											"            url: `${url}/login`,\r",
+											"            method: 'POST',\r",
+											"            header: {\r",
+											"                'Content-Type': 'application/json'\r",
+											"            },\r",
+											"            body: {\r",
+											"                mode: 'raw',\r",
+											"                raw: JSON.stringify({\r",
+											"                    \"email\": email,\r",
+											"                    \"password\": senha\r",
+											"                })\r",
+											"            }\r",
+											"        }\r",
+											"\r",
+											"        pm.sendRequest(postRequestLogin, function (err, response) {\r",
+											"            const res = response.json()\r",
+											"            console.log(err ? err : res);\r",
+											"            try {\r",
+											"                //operação\r",
+											"                pm.environment.set('token', res.authorization.slice(7))\r",
+											"\r",
+											"            } catch{\r",
+											"                //outraOp\r",
+											"                console.warn(\"Falha no login\")\r",
+											"            }\r",
+											"        });\r",
+											"    } catch{\r",
+											"        //outraOp\r",
+											"        console.warn(\"Falha no cadastro\")\r",
+											"    }\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status 201,Ok\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Cadastro realizado com sucesso');\r",
+											"});\r",
+											"\r",
+											"const atributos = ['message','_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.exist\r",
+											"})\r",
+											"});\r",
+											"\r",
+											"pm.test('Mensagem correta', () => {\r",
+											"pm.expect(response.message).have.string(\"Cadastro realizado com sucesso\")\r",
+											"});\r",
+											"\r",
+											"pm.test('Tipo da Resposta', () =>{\r",
+											"    pm.expect(response.message).is.a('String')\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{$randomProductName}}\",\r\n  \"preco\": {{$randomInt}},\r\n  \"descricao\": \"{{$randomProductMaterial}}\",\r\n  \"quantidade\": {{$randomInt}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com o campo nome vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com o campo preco vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX Vertical\",\r\n  \"preco\": \"\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com o preco inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"400@@##\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um produto com o campo preco com valor String",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"dois reais\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um produto com o campo quantidade vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"quantidade deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": 600,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um produto com o campo quantidade inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Adicione aspas em todos os valores. Esse problema já está sendo investigado na issue https://github.com/ServeRest/ServeRest/issues/225\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.be.string\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"dois reais\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um produto com o campo campo descricao vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"descricao não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": 200,\r\n  \"descricao\": \"\",\r\n  \"quantidade\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar produto por Id",
+					"item": [
+						{
+							"name": "Buscar produto com Id válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/produtos/{{_idProduto}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"{{_idProduto}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar produto com Id inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.be.string('Produto não encontrado')\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/produtos/asdhasfasf",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"asdhasfasf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Produto",
+					"item": [
+						{
+							"name": "Excluir produto com Id válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/produtos/{{_idProduto}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"{{_idProduto}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir produto com Id inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Nenhum registro excluído\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/produtos/khjasgdhjasdf",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"khjasgdhjasdf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Alterar Produtos",
+					"item": [
+						{
+							"name": "Alterar um produto com os campos válidos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"const response = pm.response.json();\r",
+											"pm.test('Tipo da resposta', () =>{\r",
+											"    pm.expect(response.message).is.a('string')\r",
+											"})\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.exist\r",
+											"})\r",
+											"});\r",
+											"pm.test('Mensagem correta', () => {\r",
+											"pm.expect(response.message).have.string(\"\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{$randomProductName}}\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/4qRY97IgAlGq8Y6m",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"4qRY97IgAlGq8Y6m"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar produto com o campo nome vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"\",\r\n  \"preco\": 470,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/4qRY97IgAlGq8Y6m",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"4qRY97IgAlGq8Y6m"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar produto com o campo preco vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Adicione aspas em todos os valores. Esse problema já está sendo investigado na issue https://github.com/ServeRest/ServeRest/issues/225\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.be.string\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{$randomProductName}}\",\r\n  \"preco\": ,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/4qRY97IgAlGq8Y6m",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"4qRY97IgAlGq8Y6m"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar produto com o preco invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"4$@@##\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/HMUArzHy9QoFNYiz",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"HMUArzHy9QoFNYiz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar produto com o campo preco com valor String",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"dois reais\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 381\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/HMUArzHy9QoFNYiz",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"HMUArzHy9QoFNYiz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um produto com o campo quantidade vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"quantidade deve ser um número\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": 600,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/HMUArzHy9QoFNYiz",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"HMUArzHy9QoFNYiz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um produto com o campo quantidade inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Adicione aspas em todos os valores. Esse problema já está sendo investigado na issue https://github.com/ServeRest/ServeRest/issues/225\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.be.string\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX \",\r\n  \"preco\": \"dois reais\",\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/HMUArzHy9QoFNYiz",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"HMUArzHy9QoFNYiz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Alterar um produto com o campo descricao vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"descricao não pode ficar em branco\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Logitech MX forcedrop \",\r\n  \"preco\": 300,\r\n  \"descricao\": \"\",\r\n  \"quantidade\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/produtos/HMUArzHy9QoFNYiz",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"produtos",
+										"HMUArzHy9QoFNYiz"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/carrinhos",
+			"item": [
+				{
+					"name": "Cadastrar carrinho",
+					"item": [
+						{
+							"name": "Cadastrar um carrinho válido",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"const url = pm.environment.get('baseURL')\r",
+											"let name = pm.variables.replaceIn('{{$randomFullName}}')\r",
+											"let email = pm.variables.replaceIn('{{$randomEmail}}')\r",
+											"let senha = pm.variables.replaceIn('{{$randomPassword}}')\r",
+											"let nome = pm.variables.replaceIn('{{$randomProductName}}')\r",
+											"let preco = pm.variables.replaceIn('{{$randomInt}}')\r",
+											"let descricao = pm.variables.replaceIn('{{$randomProductMaterial}}')\r",
+											"let quantidade = pm.variables.replaceIn('{{$randomInt}}')\r",
+											"let token = pm.environment.get('token')\r",
+											"\r",
+											"const postRequest = {\r",
+											"\r",
+											"    url: `${url}/usuarios`,\r",
+											"    method: 'POST',\r",
+											"    header: {\r",
+											"        'Content-Type': 'application/json'\r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            \"nome\": name,\r",
+											"            \"email\": email,\r",
+											"            \"password\": senha,\r",
+											"            \"administrador\": \"true\"\r",
+											"        })\r",
+											"    }\r",
+											"\r",
+											"}\r",
+											"pm.sendRequest(postRequest, (err, response) => {\r",
+											"    const res = response.json()\r",
+											"    console.log(err ? err : res);\r",
+											"    try {\r",
+											"        //operação\r",
+											"        pm.environment.set('emailValido', email)\r",
+											"        pm.environment.set('senhaValida', senha)\r",
+											"        pm.environment.set('_userId', res._id)\r",
+											"\r",
+											"        //Colaboração de Alexandre para fazer login antes de criar usuário\r",
+											"        const postRequestLogin = {\r",
+											"\r",
+											"            url: `${url}/login`,\r",
+											"            method: 'POST',\r",
+											"            header: {\r",
+											"                'Content-Type': 'application/json'\r",
+											"            },\r",
+											"            body: {\r",
+											"                mode: 'raw',\r",
+											"                raw: JSON.stringify({\r",
+											"                    \"email\": email,\r",
+											"                    \"password\": senha\r",
+											"                })\r",
+											"            }\r",
+											"        }\r",
+											"\r",
+											"        pm.sendRequest(postRequestLogin, function (err, response) {\r",
+											"            const res = response.json()\r",
+											"            console.log(err ? err : res);\r",
+											"            try {\r",
+											"                //operação\r",
+											"                pm.environment.set('token', res.authorization.slice(7))\r",
+											"\r",
+											"\r",
+											"                const postRequestProdutos = {\r",
+											"                    url: `${url}/produtos`,\r",
+											"                    method: 'POST',\r",
+											"                    header: {\r",
+											"                        'Content-Type': 'application/json' ,\r",
+											"                        'Authorization': `Bearer ${token}`\r",
+											"                    },\r",
+											"                    body: {\r",
+											"                    mode: 'raw',\r",
+											"                    raw: JSON.stringify({\r",
+											"                        'nome' : nome,\r",
+											"                        'preco' : preco,\r",
+											"                        'descricao' : descricao,\r",
+											"                        'quantidade' : quantidade\r",
+											"                    })\r",
+											"               }\r",
+											"          }\r",
+											"           pm.sendRequest(postRequestProdutos, function (err, response) {\r",
+											"            const res = response.json()\r",
+											"            console.log(err ? err : res);\r",
+											"           try{\r",
+											"           pm.environment.set('_idProduto', res._id)\r",
+											"           }catch{\r",
+											"                //outraOp\r",
+											"                console.warn(\"Falha no produtos\")\r",
+											"            }\r",
+											"        });\r",
+											"    } catch{\r",
+											"        //outraOp\r",
+											"        console.warn(\"Falha no login\")\r",
+											"    }\r",
+											"}) \r",
+											"    } catch{\r",
+											"        //outraOp\r",
+											"        console.warn(\"Falha no cadastro\")\r",
+											"    }\r",
+											"}) "
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status 201,Ok\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Cadastro realizado com sucesso');\r",
+											"});\r",
+											"\r",
+											"const atributos = ['message','_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.exist\r",
+											"})\r",
+											"});\r",
+											"\r",
+											"pm.test('Mensagem correta', () => {\r",
+											"pm.expect(response.message).have.string(\"Cadastro realizado com sucesso\")\r",
+											"});\r",
+											"\r",
+											"pm.test('Tipo da Resposta', () =>{\r",
+											"    pm.expect(response.message).is.a('string')\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"produtos\":[\r\n        {\r\n            \"idProduto\": \"{{_idProduto}}\",\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/carrinhos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um carrinho com o campo Id inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status 400, BAD\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('Não é permitido ter mais de 1 carrinho');\r",
+											"});\r",
+											"\r",
+											"const atributos = ['message',]\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.is.string\r",
+											"})\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test('Mensagem correta', () => {\r",
+											"pm.expect(response.message).have.string(\"Não é permitido ter mais de 1 carrinho\")\r",
+											"});\r",
+											"\r",
+											"pm.test('Tipo da Resposta', () =>{\r",
+											"    pm.expect(response.message).is.a('string')\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"asdjhkasjkfhaskjfa\",\r\n      \"quantidade\": 1\r\n    },\r\n    {\r\n      \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n      \"quantidade\": 3\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/carrinhos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um carrinho com o campo Id vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status 400, BAD\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include('produtos[0].idProduto não pode ficar em branco');\r",
+											"});\r",
+											"\r",
+											"const atributos = ['message',]\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.is.undefined\r",
+											"})\r",
+											"});\r",
+											"\r",
+											"pm.test('Tipo da Resposta', () =>{\r",
+											"    pm.expect(response.message).is.undefined\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"\",\r\n      \"quantidade\": 2\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/carrinhos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um carrinho com o campo quantidade com o valor String",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status 400, BAD\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"const atributos = ['message',]\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.is.string\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"vinte e tres\",\r\n      \"quantidade\": 2\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/carrinhos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar um carrinho com o campo quantidade vazio",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Adicione aspas em todos os valores. Esse problema já está sendo investigado na issue https://github.com/ServeRest/ServeRest/issues/225\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.be.string\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"vinte e tres\",\r\n      \"quantidade\": \r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/carrinhos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar um Carrinho por Id",
+					"item": [
+						{
+							"name": "Buscar um carrinho com Id válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.undefined\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/d33hrBkaFQV781s8",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"d33hrBkaFQV781s8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar um carrinho com Id inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Carrinho não encontrado\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message', '_id']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/askdjgashjdfasf",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"askdjgashjdfasf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Concluir Compra",
+					"item": [
+						{
+							"name": "Concluir compra com o token válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Concluir compra com o token inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlRyZW50b24uWmVtbGFrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJ2M2VlaG1NSkQxSUFZYkMiLCJpYXQiOjE2NTU3NTEyNDYsImV4cCI6MTY1NTc1MTg0Nn0.UoxRtaid5DFKp0EeM-Mkx9Rv5mCtyupDdEEOg3ZR87Masdasd",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cancelar Compra",
+					"item": [
+						{
+							"name": "Cancelar compra com o token válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancelar compra com o token inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"//Validação de atributos(presença)\r",
+											"const atributos = ['message']\r",
+											"atributos.forEach((atributo) => {\r",
+											"pm.test(`Resposta contém atributo \"${atributo}\"`,() => {\r",
+											"pm.expect(pm.response.json()[atributo]).to.not\r",
+											"})\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlRyZW50b24uWmVtbGFrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJ2M2VlaG1NSkQxSUFZYkMiLCJpYXQiOjE2NTU3NTEyNDYsImV4cCI6MTY1NTc1MTg0Nn0.UoxRtaid5DFKp0EeM-Mkx9Rv5mCtyupDdEEOg3ZR87Mhdsa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
