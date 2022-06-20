@@ -33,7 +33,7 @@ nesse link tem um passo á passo bem detalhado de como se fazer:
 -https://adevait.com/qa/how-to-create-elegant-html-reports-in-postman#installing-newman-and-html-reporters
 
 ##Abertura do newman
- baixar o arquivo.html e executar com algum navegador
+ baixar ou salvar o arquivo.html e abrir em algum navegador
 
 # Considerações Finais
 
